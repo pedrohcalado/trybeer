@@ -22,7 +22,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone https://github.com/betrybe/sd-05-project-trybeer-v2.git`.
+  * `git clone https://github.com/tryber/sd-05-project-trybeer-v2.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-05-project-trybeer-v2`
 
@@ -120,7 +120,7 @@ Você pode ler mais sobre os atributos que serão utilizados para testes [neste 
 
 ### Data de Entrega
 
-O projeto tem até a seguinte data: `DD/MM/YYYY - 14:00h`. Para ser entregue a avaliação final.
+O projeto tem até a seguinte data: `26/02/2021 - 14:00h`. Para ser entregue a avaliação final.
 
 ---
 
