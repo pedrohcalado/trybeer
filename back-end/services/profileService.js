@@ -1,4 +1,4 @@
-const models = require('../models/profileModel');
+const models = require('../modelsOLD/profileModel');
 
 const update = async (id, name) => {
   const userExists = await models.getById(id);
