@@ -10,10 +10,10 @@ export default function Menu(props) {
   const { setUserData, initialUser } = useContext(GeneralContext);
 
   function menuChecked() {
-    if (document.getElementById('check').checked) {
+    if (document.getElementsByClassName('check').checked) {
       setIsVisible(true);
     }
-    if (!document.getElementById('check').checked) {
+    if (!document.getElementsByClassName('check').checked) {
       setIsVisible(false);
     }
   }
@@ -22,7 +22,7 @@ export default function Menu(props) {
     <header className="menuSuperior">
       <label className="top-hamburguer" data-testid="top-hamburguer" htmlFor="check">
         &#9776;
-        <input type="checkbox" id="check" onChange={ () => menuChecked() } />
+        <input type="checkbox" className="check" onChange={ () => menuChecked() } />
       </label>
       <h1 className="topTitle" data-testid="top-title">{title}</h1>
       {isVisible && (
