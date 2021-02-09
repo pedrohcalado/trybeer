@@ -10,7 +10,11 @@ export default function MenuAdm() {
       <h1 className="topTitleAdm">TryBeer</h1>
       <nav className="menuLateralAdm">
         <div className="menuButtonAdm">
-          <Link to="/admin/orders" data-testid="side-menu-item-orders" className="buttonLateralAdm">
+          <Link
+            to="/admin/orders"
+            data-testid="side-menu-item-orders"
+            className="buttonLateralAdm"
+          >
             Pedidos
           </Link>
           <Link
@@ -26,10 +30,10 @@ export default function MenuAdm() {
             to="/login"
             data-testid="side-menu-item-logout"
             className="buttonLateralAdm"
-            onClick={() => {
+            onClick={ () => {
               localStorage.setItem('token', '');
               setUserData({ initialUser });
-            }}
+            } }
           >
             Sair
           </Link>

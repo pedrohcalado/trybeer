@@ -11,7 +11,12 @@ export default function ClientCheckoutPage() {
   const twoSeconds = 2000;
   const token = localStorage.getItem('token') || null;
   const userData = JSON.parse(localStorage.getItem('user'));
-  const { cart, setCart, cartItens, setCartItens } = useContext(ClientContext);
+  const {
+    cart,
+    setCart,
+    cartItens,
+    setCartItens,
+  } = useContext(ClientContext);
   const [street, setStreet] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
   const [purchaseDone, setPurchaseDone] = useState(false);
@@ -19,9 +24,7 @@ export default function ClientCheckoutPage() {
 
   // criei esse localCartItens porque o cartItens global está vindo como string e não
   // consegui identificar o motivo
-  const [localCartItens, setLocalCartItens] = useState(
-    JSON.parse(localStorage.getItem('cart itens'))
-  );
+  const [localCartItens, setLocalCartItens] = useState(JSON.parse(localStorage.getItem('cart itens')));
 
   useEffect(() => {
     setCartItens(JSON.parse(localStorage.getItem('cart itens')));
@@ -29,12 +32,10 @@ export default function ClientCheckoutPage() {
 
   const removeProduct = (index) => {
     const newCartItens = cartItens.filter((item, i) => i !== index);
-    const newCart = newCartItens.reduce(
-      (acc, elem) => acc + Number(elem.price) * Number(elem.quantity),
-      zero
-    );
+    const newCart = newCartItens
+      .reduce((acc, elem) => acc + ((Number(elem.price) * Number(elem.quantity))), zero);
     localStorage.setItem('cart itens', JSON.stringify(newCartItens));
-    localStorage.setItem('cart', newCart);
+    localStorage.setItem('cart', (newCart));
     setLocalCartItens(newCartItens);
     setCartItens(newCartItens);
     setCart(newCart);
@@ -59,43 +60,32 @@ export default function ClientCheckoutPage() {
   return (
     <div className="checkoutBody">
       <Menu title="Finalizar Pedido" />
-      {localCartItens.length === zero && <div>Não há produtos no carrinho</div>}
-      {localCartItens.length !== zero &&
-        localCartItens.map((product, index) => (
-          <div key={product.id} className="checkoutProduct">
-            <div className="checkoutContainer">
-              <div className="checkoutSpan">
-                <span data-testid={`${index}-product-qtd-input`}>{`Qtd: ${product.quantity}`}</span>
-                <span data-testid={`${index}-product-name`}>{product.name}</span>
-              </div>
-              <div className="checkoutSpan">
-                <span data-testid={`${index}-product-unit-price`}>{`(R$ ${Number(product.price)
-                  .toFixed(two)
-                  .replace('.', ',')} un)`}</span>
-                <span
-                  data-testid={`${index}-product-total-value`}
-                  className="checkoutValue"
-                >{` R$ ${(Number(product.price) * Number(product.quantity))
-                  .toFixed(two)
-                  .replace('.', ',')}`}</span>
-              </div>
+      { (localCartItens.length === zero) && <div>Não há produtos no carrinho</div> }
+      { (localCartItens.length !== zero) && localCartItens.map((product, index) => (
+        <div key={ product.id } className="checkoutProduct">
+          <div className="checkoutContainer">
+            <div className="checkoutSpan">
+              <span data-testid={ `${index}-product-qtd-input` }>{ `Qtd: ${product.quantity}` }</span>
+              <span data-testid={ `${index}-product-name` }>{product.name}</span>
             </div>
-            <div>
-              <button
-                data-testid={`${index}-removal-button`}
-                type="button"
-                className="checkoutButton"
-                onClick={() => removeProduct(index)}
-              >
-                X
-              </button>
+            <div className="checkoutSpan">
+              <span data-testid={ `${index}-product-unit-price` }>{`(R$ ${Number(product.price).toFixed(two).replace('.', ',')} un)`}</span>
+              <span data-testid={ `${index}-product-total-value` } className="checkoutValue">{` R$ ${((Number(product.price)) * (Number(product.quantity))).toFixed(two).replace('.', ',')}`}</span>
             </div>
           </div>
-        ))}
+          <div>
+            <button
+              data-testid={ `${index}-removal-button` }
+              type="button"
+              className="checkoutButton"
+              onClick={ () => removeProduct(index) }
+            >
+              X
+            </button>
+          </div>
+        </div>)) }
       <div className="checkoutTotal">
-        <span data-testid="order-total-value">{`Total: R$ ${Number(cart)
-          .toFixed(two)
-          .replace('.', ',')}`}</span>
+        <span data-testid="order-total-value">{`Total: R$ ${Number(cart).toFixed(two).replace('.', ',')}`}</span>
       </div>
       <div className="checkoutLabels">
         <label htmlFor="street" className="checkoutLabel">
@@ -105,7 +95,7 @@ export default function ClientCheckoutPage() {
             className="checkoutInputRua"
             id="street"
             type="text"
-            onChange={(event) => setStreet(event.target.value)}
+            onChange={ (event) => setStreet(event.target.value) }
           />
         </label>
         <label htmlFor="number" className="checkoutLabel">
@@ -115,7 +105,7 @@ export default function ClientCheckoutPage() {
             className="checkoutInputNumero"
             id="number"
             type="number"
-            onChange={(event) => setStreetNumber(event.target.value)}
+            onChange={ (event) => setStreetNumber(event.target.value) }
           />
         </label>
       </div>
@@ -123,12 +113,12 @@ export default function ClientCheckoutPage() {
         data-testid="checkout-finish-btn"
         className="chekcoutFinish"
         type="button"
-        disabled={cart === zero || street === '' || streetNumber === ''}
-        onClick={() => handleClick()}
+        disabled={ (cart === zero) || (street === '') || (streetNumber === '') }
+        onClick={ () => handleClick() }
       >
         Finalizar Pedido
       </button>
-      {purchaseDone && <div className="checkoutSucesso">Compra realizada com sucesso!</div>}
+      { purchaseDone && <div className="checkoutSucesso">Compra realizada com sucesso!</div> }
     </div>
   );
 }

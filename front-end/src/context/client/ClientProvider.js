@@ -13,11 +13,7 @@ const ClientProvider = ({ children }) => {
   const [cartItens, setCartItens] = useState(localStorage.getItem('cart itens') || []);
   const [cart, setCart] = useState(localStorage.getItem('cart') || initialQuantity);
   const context = {
-    email, setEmail,
-    name, setName,
-    products, setProducts,
-    cart, setCart,
-    cartItens, setCartItens,
+    email, setEmail, name, setName, products, setProducts, cart, setCart, cartItens, setCartItens,
   };
   return <ClientContext.Provider value={ context }>{children}</ClientContext.Provider>;
 };

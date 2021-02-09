@@ -35,7 +35,7 @@ export default function ClientProfilePage() {
         email: user.email,
         name: localName,
         role: user.role,
-      })
+      }),
     );
     const api = await updateUserNameAPI(user.id, {
       ...user,
@@ -58,7 +58,7 @@ export default function ClientProfilePage() {
             type="text"
             id="email"
             name="email"
-            value={user.email}
+            value={ user.email }
             readOnly
           />
         </label>
@@ -70,16 +70,16 @@ export default function ClientProfilePage() {
             type="text"
             id="name"
             name="name"
-            value={localName}
-            onChange={handleChange}
+            value={ localName }
+            onChange={ handleChange }
           />
         </label>
         <button
           data-testid="profile-save-btn"
           className="salvar"
           type="button"
-          onClick={handleClick}
-          disabled={nameEqual}
+          onClick={ handleClick }
+          disabled={ nameEqual }
         >
           Salvar
         </button>

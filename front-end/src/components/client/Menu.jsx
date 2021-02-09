@@ -22,7 +22,7 @@ export default function Menu(props) {
     <header className="menuSuperior">
       <label className="top-hamburguer" data-testid="top-hamburguer" htmlFor="check">
         &#9776;
-        <input type="checkbox" className="check" onChange={() => menuChecked()} />
+        <input type="checkbox" className="check" onChange={ () => menuChecked() } />
       </label>
       <h1 className="topTitle" data-testid="top-title">
         {title}
@@ -46,10 +46,10 @@ export default function Menu(props) {
                 to="/login"
                 data-testid="side-menu-item-logout"
                 className="buttonLateral"
-                onClick={() => {
+                onClick={ () => {
                   localStorage.setItem('token', '');
                   setUserData({ initialUser });
-                }}
+                } }
               >
                 Sair
               </Link>
