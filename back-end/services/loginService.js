@@ -16,7 +16,7 @@ const validationUser = async (body) => {
     return {
       error: true,
       code: 'invalid_data',
-      message: "O campo e-mail deve ter o formato 'email@email.com'",
+      message: `O campo e-mail deve ter o formato 'email@email.com'`,
     };
   }
 

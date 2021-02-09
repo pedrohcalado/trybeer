@@ -17,7 +17,7 @@ export default function AdminSaleDetailsPage(props) {
   }, [id]);
   if (!token) return <Redirect to="/login" />;
 
-  const handleClick = async () => {
+  const handleClick = async (id) => {
     updateSalesStatus(id, 'Entregue')
       .then(() => getSaleById(id))
       .then((response) => setSaleDetails(response));
