@@ -42,7 +42,7 @@ export default function RegisterPage() {
         email: user.email,
         role: user.role,
         name: user.name,
-      }),
+      })
     );
     setLoggedIn(true);
     // return <Redirect to="/products" />;
@@ -94,13 +94,13 @@ export default function RegisterPage() {
               id="name"
               data-testid="signup-name"
               className="inputRegistro"
-              onChange={ ((event) => {
+              onChange={(event) => {
                 setNameValid(validateName(event.target.value));
                 setUserData({
                   ...userData,
                   name: event.target.value,
                 });
-              }) }
+              }}
             />
           </label>
         </div>
@@ -112,16 +112,16 @@ export default function RegisterPage() {
               id="email"
               data-testid="signup-email"
               className="inputRegistro"
-              onChange={ ((event) => {
+              onChange={(event) => {
                 setEmailValid(validateEmail(event.target.value));
                 setUserData({
                   ...userData,
                   email: event.target.value,
                 });
-              }) }
+              }}
             />
           </label>
-          { isEmailRegistered ? <div className="alradyDB">E-mail already in database.</div> : false }
+          {isEmailRegistered ? <div className="alradyDB">E-mail already in database.</div> : false}
         </div>
         <div>
           <label htmlFor="password" className="labelRegistro">
@@ -131,13 +131,13 @@ export default function RegisterPage() {
               id="password"
               data-testid="signup-password"
               className="inputRegistro"
-              onChange={ ((event) => {
+              onChange={(event) => {
                 setPasswordValid(validatePassword(event.target.value));
                 setUserData({
                   ...userData,
                   password: event.target.value,
                 });
-              }) }
+              }}
             />
           </label>
         </div>
@@ -148,9 +148,9 @@ export default function RegisterPage() {
               id="want-to-sell"
               data-testid="signup-seller"
               className="inputCheckRegistro"
-              onChange={ () => {
+              onChange={() => {
                 checked();
-              } }
+              }}
             />
             Quero Vender
           </label>
@@ -160,8 +160,8 @@ export default function RegisterPage() {
             type="button"
             data-testid="signup-btn"
             className="cadastrar"
-            onClick={ () => isUserRegistered(userData) }
-            disabled={ !isNameValid || !isEmailValid || !isPasswordValid }
+            onClick={() => isUserRegistered(userData)}
+            disabled={!isNameValid || !isEmailValid || !isPasswordValid}
           >
             Cadastrar
           </button>

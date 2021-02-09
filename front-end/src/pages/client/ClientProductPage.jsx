@@ -8,25 +8,20 @@ import '../../css/client/clientProductPage.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const {
-    cart,
-    setCart,
-    cartItens,
-    setCartItens,
-  } = useContext(ClientContext);
+  const { cart, setCart, cartItens, setCartItens } = useContext(ClientContext);
   const token = localStorage.getItem('token') || null;
   const zero = 0;
   const dois = 2;
 
   useEffect(() => {
     if (cart >= zero) {
-      localStorage.setItem('cart', (cart).toString());
+      localStorage.setItem('cart', cart.toString());
     }
   }, [cart]);
 
   useEffect(() => {
     productsApi().then((response) => setProducts(response));
-    const cartValue = (parseFloat(localStorage.getItem('cart')) || zero);
+    const cartValue = parseFloat(localStorage.getItem('cart')) || zero;
     setCart(cartValue);
     const cartIt = JSON.parse(localStorage.getItem('cart itens')) || [];
     localStorage.setItem('cart itens', JSON.stringify(cartIt));
@@ -40,7 +35,7 @@ const Products = () => {
       <Menu title="TryBeer" />
       <div className="listProducts marginTop">
         {products.map((product, index) => (
-          <ProdCard key={ product.id } index={ index } product={ product } />
+          <ProdCard key={product.id} index={index} product={product} />
         ))}
       </div>
       <div className="ver-carrinho">
@@ -49,7 +44,7 @@ const Products = () => {
             type="button"
             data-testid="checkout-bottom-btn"
             className="buttonCart"
-            disabled={ cartItens.length === zero }
+            disabled={cartItens.length === zero}
           >
             Ver Carrinho
             <span data-testid="checkout-bottom-btn-value" className="somaCart">

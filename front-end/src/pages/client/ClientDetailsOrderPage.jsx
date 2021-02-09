@@ -25,26 +25,19 @@ export default function ClientDetailsOrderPage(props) {
           <span data-testid="order-number">
             {order && `Pedido ${order.orderDetail[0].sale_id}`}
           </span>
-          <span data-testid="order-date">
-            {order && order.orderDetail[0].sale_date}
-          </span>
+          <span data-testid="order-date">{order && order.orderDetail[0].sale_date}</span>
         </div>
-        {order && (
+        {order &&
           order.orderDetail.map((product, index) => (
             <div key="fechalint" className="datailCard">
               {/* <span key="indice">{ `${index + 1}` }</span> */}
-              <span data-testid={ `${index}-product-name` }>
-                { `${product.name}` }
-              </span>
-              <span data-testid={ `${index}-product-qtd` }>
-                { `Qtd: ${product.quantity}` }
-              </span>
-              <span data-testid={ `${index}-product-total-value` } className="datailValue">
-                { `R$ ${product.total.toFixed(dois).replace('.', ',')}` }
+              <span data-testid={`${index}-product-name`}>{`${product.name}`}</span>
+              <span data-testid={`${index}-product-qtd`}>{`Qtd: ${product.quantity}`}</span>
+              <span data-testid={`${index}-product-total-value`} className="datailValue">
+                {`R$ ${product.total.toFixed(dois).replace('.', ',')}`}
               </span>
             </div>
-          ))
-        ) }
+          ))}
         {order && (
           <div data-testid="order-total-value" className="detailsTotal">
             {`Total R$ ${order.orderDetail

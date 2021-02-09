@@ -12,18 +12,18 @@ const OrderCard = (props) => {
 
   return (
     <div>
-      <Link to={ `/admin/orders/${order.id}` } className="orderContainer">
-        <p data-testid={ `${index}-order-number` }>
-          <span>{ `Pedido ${order.id}` }</span>
+      <Link to={`/admin/orders/${order.id}`} className="orderContainer">
+        <p data-testid={`${index}-order-number`}>
+          <span>{`Pedido ${order.id}`}</span>
         </p>
-        <p data-testid={ `${index}-order-address` }>
-          { `${order.delivery_address}, ${order.delivery_number} `}
+        <p data-testid={`${index}-order-address`}>
+          {`${order.delivery_address}, ${order.delivery_number} `}
         </p>
-        <span data-testid={ `${index}-order-total-value` }>
-          { `R$ ${Number(order.total_price).toFixed(dois).replace('.', ',')}` }
+        <span data-testid={`${index}-order-total-value`}>
+          {`R$ ${Number(order.total_price).toFixed(dois).replace('.', ',')}`}
         </span>
-        <p className={ order.status === 'Entregue' ? 'green orderStatus' : 'orderStatus' }>
-          <p data-testid={ `${index}-order-status` }>{order.status}</p>
+        <p className={order.status === 'Entregue' ? 'green orderStatus' : 'orderStatus'}>
+          <p data-testid={`${index}-order-status`}>{order.status}</p>
         </p>
       </Link>
     </div>

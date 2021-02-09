@@ -13,7 +13,9 @@ export default function ClientMeusPedidos() {
     if (!JSON.parse(localStorage.getItem('user'))) {
       setPedidos('');
     } else {
-      MeusPedidosData(JSON.parse(localStorage.getItem('user')).id).then((response) => setPedidos(response));
+      MeusPedidosData(JSON.parse(localStorage.getItem('user')).id).then((response) =>
+        setPedidos(response)
+      );
     }
   }, []);
 
@@ -24,7 +26,7 @@ export default function ClientMeusPedidos() {
       <Menu title="Meus Pedidos" />
       <div className="bodyMeusPedidos">
         {pedidos.map((order, index) => (
-          <MeusPedidosCard key={ order.id } order={ order } index={ index } />
+          <MeusPedidosCard key={order.id} order={order} index={index} />
         ))}
       </div>
     </div>
