@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../css/admin/menuAdm.css';
-import { ButtonPedidos, ButtonPerfil, ButtonLogin } from '../Buttons/ButtonsMenuAdm';
+import ButtonPedidos from '../general/ButtonPedidos';
+import ButtonPerfil from '../general/ButtonPerfil';
+import ButtonLogin from '../general/ButtonLogin';
 
 export default function MenuAdm() {
   return (
@@ -8,7 +10,7 @@ export default function MenuAdm() {
       <h1 className="topTitleAdm">TryBeer</h1>
       <nav className="menuLateralAdm">
         <div className="menuButtonAdm">
-          <ButtonPedidos />       
+          <ButtonPedidos />
           <ButtonPerfil />
         </div>
         <div className="menuButtonAdm textCenter">

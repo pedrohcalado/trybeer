@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Status from '../admin/Status';
+import Status from './Status';
 
 const dois = 2;
 
@@ -19,7 +19,7 @@ const OrderCard = (props) => {
         <span data-testid={ `${index}-order-total-value` }>
           { `R$ ${Number(order.total_price).toFixed(dois).replace('.', ',')}` }
         </span>
-        <Status index={ index } order={ order }/>
+        <Status index={ index } order={ order } />
       </Link>
     </div>
   );

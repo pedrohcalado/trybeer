@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../../css/client/menu.css';
-import { MenuLateral } from '../Buttons/MenuLinks';
+import MenuLateral from '../general/MenuLateral';
 
 function menuChecked(changeState) {
   if (document.getElementById('check').checked) {
