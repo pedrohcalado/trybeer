@@ -17,12 +17,12 @@
     "socket.io-client": "^3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts st  art",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js --ext .jsx"
   },
   "browserslist": {
     "production": [
