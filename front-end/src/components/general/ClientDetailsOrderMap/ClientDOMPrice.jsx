@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const dois = 2;
 
@@ -12,3 +13,8 @@ export default function ClientDOMapPrice(props) {
     </div>
   );
 }
+
+ClientDOMapPrice.propTypes = {
+  product: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+};

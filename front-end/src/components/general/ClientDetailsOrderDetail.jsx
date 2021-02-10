@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function ClientDetailsOrderDetail(props) {
   const { order } = props;
@@ -13,3 +14,7 @@ export default function ClientDetailsOrderDetail(props) {
     </div>
   );
 }
+
+ClientDetailsOrderDetail.propTypes = {
+  order: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

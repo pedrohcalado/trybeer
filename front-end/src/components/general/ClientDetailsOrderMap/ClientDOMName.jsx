@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function ClientDOMapName(props) {
   const { index, product } = props;
@@ -10,3 +11,8 @@ export default function ClientDOMapName(props) {
     </div>
   );
 }
+
+ClientDOMapName.propTypes = {
+  product: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+};

@@ -1,6 +1,7 @@
 import React from 'react';
-import getSaleById from '../../services/admin/getSaleById';
-import updateSalesStatus from '../../services/admin/updateSalesStatus';
+import PropTypes from 'prop-types';
+import getSaleById from '../../../services/admin/getSaleById';
+import updateSalesStatus from '../../../services/admin/updateSalesStatus';
 
 const handleClick = async (id, setSaleDetails) => {
   updateSalesStatus(id, 'Entregue')
@@ -10,6 +11,7 @@ const handleClick = async (id, setSaleDetails) => {
 
 export default function AdminSaleDetailsButton(props) {
   const { id, saleDetails, setSaleDetails } = props;
+  console.log(saleDetails);
   return (
     <div>
       {saleDetails && (saleDetails[0].status === 'Pendente' ? (
@@ -25,3 +27,13 @@ export default function AdminSaleDetailsButton(props) {
     </div>
   );
 }
+
+AdminSaleDetailsButton.propTypes = {
+  id: PropTypes.string,
+  saleDetails: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setSaleDetails: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+AdminSaleDetailsButton.defaultProps = {
+  id: false,
+};

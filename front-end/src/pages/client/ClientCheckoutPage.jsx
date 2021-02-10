@@ -5,31 +5,21 @@ import { ClientContext } from '../../context/client/ClientProvider';
 import fetchSalesData from '../../services/client/fetchSalesData';
 import '../../css/client/clientCheckoutPage.css';
 
+const zero = 0;
+const two = 2;
+const twoSeconds = 2000;
+const token = localStorage.getItem('token') || null;
+const userData = JSON.parse(localStorage.getItem('user'));
+const getCartIten = JSON.parse(localStorage.getItem('cart itens'));
+
 export default function ClientCheckoutPage() {
-  const zero = 0;
-  const two = 2;
-  const twoSeconds = 2000;
-  const token = localStorage.getItem('token') || null;
-  const userData = JSON.parse(localStorage.getItem('user'));
-  const {
-    cart,
-    setCart,
-    cartItens,
-    setCartItens,
-  } = useContext(ClientContext);
+  const { cart, setCart, cartItens, setCartItens } = useContext(ClientContext);
   const [street, setStreet] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
   const [purchaseDone, setPurchaseDone] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
-  // criei esse localCartItens porque o cartItens global está vindo como string e não
-  // consegui identificar o motivo
-  const [localCartItens, setLocalCartItens] = useState(JSON.parse(localStorage.getItem('cart itens')));
-
-  useEffect(() => {
-    setCartItens(JSON.parse(localStorage.getItem('cart itens')));
-  }, [setCartItens]);
-
+  const [localCartItens, setLocalCartItens] = useState(getCartIten);
+  useEffect(() => { setCartItens(getCartIten); }, [setCartItens]);
   const removeProduct = (index) => {
     const newCartItens = cartItens.filter((item, i) => i !== index);
     const newCart = newCartItens
@@ -65,12 +55,30 @@ export default function ClientCheckoutPage() {
         <div key={ product.id } className="checkoutProduct">
           <div className="checkoutContainer">
             <div className="checkoutSpan">
-              <span data-testid={ `${index}-product-qtd-input` }>{ `Qtd: ${product.quantity}` }</span>
-              <span data-testid={ `${index}-product-name` }>{product.name}</span>
+              <span
+                data-testid={ `${index}-product-qtd-input` }
+              >
+                { `Qtd: ${product.quantity}` }
+              </span>
+              <span
+                data-testid={ `${index}-product-name` }
+              >
+                {product.name}
+              </span>
             </div>
             <div className="checkoutSpan">
-              <span data-testid={ `${index}-product-unit-price` }>{`(R$ ${Number(product.price).toFixed(two).replace('.', ',')} un)`}</span>
-              <span data-testid={ `${index}-product-total-value` } className="checkoutValue">{` R$ ${((Number(product.price)) * (Number(product.quantity))).toFixed(two).replace('.', ',')}`}</span>
+              <span
+                data-testid={ `${index}-product-unit-price` }
+              >
+                {`(R$ ${Number(product.price).toFixed(two).replace('.', ',')} un)`}
+              </span>
+              <span
+                data-testid={ `${index}-product-total-value` }
+                className="checkoutValue"
+              >
+                {` R$ ${((Number(product.price)) * (Number(product.quantity)))
+                  .toFixed(two).replace('.', ',')}`}
+              </span>
             </div>
           </div>
           <div>
@@ -85,7 +93,11 @@ export default function ClientCheckoutPage() {
           </div>
         </div>)) }
       <div className="checkoutTotal">
-        <span data-testid="order-total-value">{`Total: R$ ${Number(cart).toFixed(two).replace('.', ',')}`}</span>
+        <span
+          data-testid="order-total-value"
+        >
+          {`Total: R$ ${Number(cart).toFixed(two).replace('.', ',')}`}
+        </span>
       </div>
       <div className="checkoutLabels">
         <label htmlFor="street" className="checkoutLabel">
@@ -118,7 +130,11 @@ export default function ClientCheckoutPage() {
       >
         Finalizar Pedido
       </button>
-      { purchaseDone && <div className="checkoutSucesso">Compra realizada com sucesso!</div> }
+      { purchaseDone && (
+        <div className="checkoutSucesso">
+          Compra realizada com sucesso!
+        </div>
+      ) }
     </div>
   );
 }

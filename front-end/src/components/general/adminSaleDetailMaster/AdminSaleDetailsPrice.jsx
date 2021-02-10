@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function AdminSaleDetailsPrice(props) {
   const { saleDetails } = props;
@@ -8,3 +9,7 @@ export default function AdminSaleDetailsPrice(props) {
     </div>
   );
 }
+
+AdminSaleDetailsPrice.propTypes = {
+  saleDetails: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
