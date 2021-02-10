@@ -37,6 +37,7 @@ export default function ClientProfilePage() {
         role: user.role,
       }),
     );
+    console.log(user.id)
     const api = await updateUserNameAPI(user.id, {
       ...user,
       name: localName,

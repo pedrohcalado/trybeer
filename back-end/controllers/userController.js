@@ -4,6 +4,7 @@ const userService = require('../services/userService');
 
 const user = Router();
 
+const successCode = 200;
 const createdCode = 201;
 
 user.post(
@@ -24,6 +25,16 @@ user.post('/register', rescue(async (req, res, next) => {
   }
   const { password, ...userWithoutPassword } = user.dataValues;
   res.status(createdCode).json(userWithoutPassword);
+}));
+
+user.put('/profile/:id', rescue(async (req, res, next) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const response = await userService.update(id, name);
+  if (response.error) {
+    next(response);
+  }
+  return res.status(successCode).json(response);
 }));
 
 module.exports = user;

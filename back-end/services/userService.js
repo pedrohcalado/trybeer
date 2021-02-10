@@ -54,7 +54,6 @@ const isUserRegistered = async (email) => {
   }
 };
 
-
 const isPasswordCorrect = async (email, password) => {
   const user = await getByEmail(email);
   if (user && user.dataValues.password !== password) {
@@ -78,7 +77,6 @@ const validateUserData = async (email, password) => {
   if (passwordFilled) return passwordFilled;
   if (passwordValid) return passwordValid;
   if (userRegistered) return userRegistered;
-  console.log(userRegistered);
   if (user) {
     user.dataValues.error = false;
   }
@@ -114,8 +112,25 @@ const create = async (user) => {
   return User.create({ name, email, password, role });
 };
 
+const update = async (id, name) => {
+  const userExists = await User.findOne({
+    where: { id }
+  });
+  if (!userExists) {
+    return {
+      error: true,
+      code: 'not_found',
+      message: 'User not found',
+    };
+  }
+
+  await User.update({ name }, { where: { id }});
+  return ({ id, name, message: 'success' });
+};
+
 module.exports = {
   validationUser,
   getByEmail,
   create,
+  update,
 };
