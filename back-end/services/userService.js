@@ -39,8 +39,13 @@ const isPasswordValid = (password) => {
   }
 };
 
-const isUserRegistered = (user) => {
-  if (user === undefined) {
+const getByEmail = async (email) => await User.findOne({
+  where: { email },
+});
+
+const isUserRegistered = async (email) => {
+  const user = await getByEmail(email);
+  if (!user) {
     return {
       error: true,
       code: 'invalid_user',
@@ -49,8 +54,10 @@ const isUserRegistered = (user) => {
   }
 };
 
-const isPasswordCorrect = (password, user) => {
-  if (user.password !== password) {
+
+const isPasswordCorrect = async (email, password) => {
+  const user = await getByEmail(email);
+  if (user && user.dataValues.password !== password) {
     return {
       error: true,
       code: 'invalid_user',
@@ -59,19 +66,31 @@ const isPasswordCorrect = (password, user) => {
   }
 };
 
-const getByEmail = async (email) => await User.findOne({
-  where: { email },
-});
+const validateUserData = async (email, password) => {
+  const user = await getByEmail(email);
+  const passwordCorrect = await isPasswordCorrect(email, password);
+  const emailValid = await isEmailvalid(email);
+  const passwordFilled = await isPasswordFilled(password);
+  const passwordValid = await isPasswordValid(password);
+  const userRegistered = await isUserRegistered(email);
+  if (passwordCorrect) return passwordCorrect;
+  if (emailValid) return emailValid;
+  if (passwordFilled) return passwordFilled;
+  if (passwordValid) return passwordValid;
+  if (userRegistered) return userRegistered;
+  console.log(userRegistered);
+  if (user) {
+    user.dataValues.error = false;
+  }
+
+  return user.dataValues;
+};
 
 const validationUser = async (body) => {
   const { email, password } = body;
-  const user = await getByEmail(email);
-  isEmailvalid(email);
-  isPasswordFilled(password);
-  isPasswordValid(password);
-  isUserRegistered(user);
-  isPasswordCorrect(password, user);
+  const user = await validateUserData(email, password);
   const token = crypto.randomBytes(tokenLength).toString('hex');
+  if (user.error) return user;
   return {
     token,
     id: user.id,
@@ -83,7 +102,7 @@ const validationUser = async (body) => {
 };
 
 const create = async (user) => {
-  const { email } = user;
+  const { name, email, password, role } = user;
   const validation = await getByEmail(email);
   if (validation) {
     return {
@@ -92,7 +111,7 @@ const create = async (user) => {
       message: 'E-mail already in database.',
     };
   }
-  return model.create(user);
+  return User.create({ name, email, password, role });
 };
 
 module.exports = {

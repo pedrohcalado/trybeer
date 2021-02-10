@@ -22,7 +22,8 @@ user.post('/register', rescue(async (req, res, next) => {
   if (user.error) {
     return next(user);
   }
-  res.status(createdCode).json(user);
+  const { password, ...userWithoutPassword } = user.dataValues;
+  res.status(createdCode).json(userWithoutPassword);
 }));
 
 module.exports = user;
