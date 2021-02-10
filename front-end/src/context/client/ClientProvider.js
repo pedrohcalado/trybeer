@@ -5,15 +5,25 @@ import PropTypes from 'prop-types';
 
 export const ClientContext = createContext();
 
+const initialQuantity = 0;
+
 const ClientProvider = ({ children }) => {
-  const initialQuantity = 0;
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [products, setProducts] = useState([]);
   const [cartItens, setCartItens] = useState(localStorage.getItem('cart itens') || []);
   const [cart, setCart] = useState(localStorage.getItem('cart') || initialQuantity);
   const context = {
-    email, setEmail, name, setName, products, setProducts, cart, setCart, cartItens, setCartItens,
+    email,
+    setEmail,
+    name,
+    setName,
+    products,
+    setProducts,
+    cart,
+    setCart,
+    cartItens,
+    setCartItens,
   };
   return <ClientContext.Provider value={ context }>{children}</ClientContext.Provider>;
 };

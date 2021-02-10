@@ -20,17 +20,15 @@ export default function Menu(props) {
     <header className="menuSuperior">
       <label className="top-hamburguer" data-testid="top-hamburguer" htmlFor="check">
         &#9776;
-        <input 
+        <input
           type="checkbox"
           className="check"
-          id="check" 
+          id="check"
           onChange={ () => menuChecked(setIsVisible) }
-        />  
+        />
       </label>
       <MenuTitle />
-      {isVisible && (
-        <MenuLateral title={title} />
-      )}
+      {isVisible && (<MenuLateral title={ title } />)}
     </header>
   );
 }

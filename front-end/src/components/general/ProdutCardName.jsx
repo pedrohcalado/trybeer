@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProdutCardName(props) {
@@ -7,7 +7,7 @@ export default function ProdutCardName(props) {
     <div data-testid={ `${index}-product-name` } className="cart-name">
       { product.name }
     </div>
-  )
+  );
 }
 
 ProdutCardName.propTypes = {

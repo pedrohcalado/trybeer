@@ -7,6 +7,7 @@ const negativo = -1;
 
 const altQuantity = async (newQuantity, cartProducts, id, name, price, setCartItens, cartItens) => {
   const prodIndex = cartProducts.findIndex((i) => i.id === id);
+  console.log(cartProducts);
   let newCartItens = cartProducts;
   if (prodIndex !== negativo) {
     if (newQuantity === initialQuantity) {
@@ -38,6 +39,7 @@ const increaseItem = (cart, cartProducts, id, name, price, setCartItens,
   altQuantity(newQuantity, cartProducts, id, name, price, setCartItens, cartItens);
 };
 
+
 export default function QuantityButton(props) {
   const [quantity, setQuantity] = useState(initialQuantity);
   const { id, index, price, name } = props;
@@ -51,7 +53,6 @@ export default function QuantityButton(props) {
   const cartProducts = JSON.parse(localStorage.getItem('cart itens'));
   const cartItensLocalStorage = cartProducts.find((product) => product.id === id);
 
-
   function decreaseItem() {
     let newQuantity;
     const newCartValue = cart - Number(price);
@@ -62,7 +63,7 @@ export default function QuantityButton(props) {
     }
     if (newQuantity >= initialQuantity) {
       setQuantity(newQuantity);
-      altQuantity(newQuantity);
+      altQuantity(newQuantity, cartProducts, id, name, price, setCartItens, cartItens);
       setCart(newCartValue);
     }
     if (cart >= initialQuantity) {

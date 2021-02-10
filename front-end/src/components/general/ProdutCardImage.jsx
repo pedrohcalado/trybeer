@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export default function ProdutCardImage(props) {
   const { product, index } = props;
-  console.log(product);
   return (
     <div>
       <div className="divImage">

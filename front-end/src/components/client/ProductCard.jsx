@@ -8,8 +8,8 @@ const ProdCard = (props) => {
   const { product, index } = props;
   return (
     <div key={ product.id } className="card-body">
-      <ProdutCardImage product={product} index={index} />
-      <ProdutCardName product={product} index={index} />
+      <ProdutCardImage product={ product } index={ index } />
+      <ProdutCardName product={ product } index={ index } />
       <div data-testid={ `${index}-product-price` } className="cart-price">
         <div>
           { `R$ ${product.price.toString().replace('.', ',')}` }

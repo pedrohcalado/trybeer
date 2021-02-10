@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function LabelMenu(props) {
   const { title } = props;
@@ -10,3 +11,7 @@ export default function LabelMenu(props) {
     </div>
   );
 }
+
+LabelMenu.propTypes = {
+  title: PropTypes.string.isRequired,
+};
