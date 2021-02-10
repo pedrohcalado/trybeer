@@ -2,62 +2,55 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ClientContext } from '../../context/client/ClientProvider';
 
+const initialQuantity = 0;
+const negativo = -1;
+
+const altQuantity = async (newQuantity, cartProducts, id, name, price, setCartItens, cartItens) => {
+  const prodIndex = cartProducts.findIndex((i) => i.id === id);
+  let newCartItens = cartProducts;
+  if (prodIndex !== negativo) {
+    if (newQuantity === initialQuantity) {
+      newCartItens.splice(prodIndex, 1);
+    } else {
+      newCartItens[prodIndex] = { id, quantity: newQuantity, name, price };
+    }
+    setCartItens(newCartItens);
+  } else {
+    newCartItens = [...cartItens, { id, quantity: newQuantity, name, price }];
+    setCartItens([...cartItens, { id, quantity: newQuantity, name, price }]);
+  }
+  localStorage.setItem('cart itens', JSON.stringify(newCartItens));
+};
+
+const increaseItem = (cart, cartProducts, id, name, price, setCartItens,
+   cartItens, cartItensLocalStorage, quantity, setQuantity, setCart, updateCart, altQuantity
+) => {
+  let newQuantity;
+  const newCartValue = cart + Number(price);
+  if (cartItensLocalStorage && cartItensLocalStorage.quantity) {
+    newQuantity = cartItensLocalStorage.quantity + 1;
+  } else {
+    newQuantity = quantity + 1;
+  }
+  setQuantity(newQuantity);
+  setCart(newCartValue);
+  updateCart();
+  altQuantity(newQuantity, cartProducts, id, name, price, setCartItens, cartItens);
+};
+
 export default function QuantityButton(props) {
-  const initialQuantity = 0;
-  const negativo = -1;
   const [quantity, setQuantity] = useState(initialQuantity);
+  const { id, index, price, name } = props;
   const {
     cart,
     cartItens,
     setCart,
     setCartItens,
   } = useContext(ClientContext);
-  const {
-    id, index, price, name,
-  } = props;
-
   const updateCart = () => localStorage.setItem('cart', (cart).toString());
   const cartProducts = JSON.parse(localStorage.getItem('cart itens'));
-
-  const altQuantity = async (newQuantity) => {
-    const prodIndex = cartProducts.findIndex((i) => i.id === id);
-    let newCartItens = cartProducts;
-
-    if (prodIndex !== negativo) {
-      if (newQuantity === initialQuantity) {
-        newCartItens.splice(prodIndex, 1);
-      } else {
-        newCartItens[prodIndex] = {
-          id, quantity: newQuantity, name, price,
-        };
-      }
-      setCartItens(newCartItens);
-    } else {
-      newCartItens = [...cartItens, {
-        id, quantity: newQuantity, name, price,
-      }];
-      setCartItens([...cartItens, {
-        id, quantity: newQuantity, name, price,
-      }]);
-    }
-    localStorage.setItem('cart itens', JSON.stringify(newCartItens));
-  };
-
   const cartItensLocalStorage = cartProducts.find((product) => product.id === id);
 
-  const increaseItem = () => {
-    let newQuantity;
-    const newCartValue = cart + Number(price);
-    if (cartItensLocalStorage && cartItensLocalStorage.quantity) {
-      newQuantity = cartItensLocalStorage.quantity + 1;
-    } else {
-      newQuantity = quantity + 1;
-    }
-    setQuantity(newQuantity);
-    setCart(newCartValue);
-    updateCart();
-    altQuantity(newQuantity);
-  };
 
   function decreaseItem() {
     let newQuantity;
@@ -98,7 +91,9 @@ export default function QuantityButton(props) {
         type="button"
         className="product-increase-quantity"
         data-testid={ `${index}-product-plus` }
-        onClick={ () => { increaseItem(); } }
+        onClick={ () => { increaseItem(cart, cartProducts, id, name,
+          price, setCartItens, cartItens, cartItensLocalStorage, quantity,
+          setQuantity, setCart, updateCart, altQuantity); } }
       >
         +
       </button>
