@@ -1,6 +1,7 @@
-const ordersModel = require('../modelsOLD/ordersModel');
+const { Sale } = require('../models');
 
-const getAllOrders = async (id) => ordersModel.getAllOrders(id);
+const getAllOrders = async (id) => Sale.findAll({
+  where: { userId: id }});
 
 module.exports = {
   getAllOrders,

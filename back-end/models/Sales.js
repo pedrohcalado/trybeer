@@ -7,7 +7,10 @@ const Sale = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'Pendente',
+    },
   },
   {
     timestamps: false,
@@ -15,7 +18,6 @@ const Sale = (sequelize, DataTypes) => {
 
   sale.associate = (models) =>
     sale.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
-
   return sale;
 };
 

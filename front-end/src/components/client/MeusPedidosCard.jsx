@@ -16,7 +16,7 @@ export default function MausPedidosCard(props) {
           { dateFormat(order.sale_date, 'dd/mm') }
         </div>
         <div data-testid={ `${index}-order-total-value` } className="valueMeuPedido">
-          { `R$ ${order.total_price.replace('.', ',')}` }
+          { `R$ ${order.total_price.toString().replace('.', ',')}` }
         </div>
       </div>
     </Link>
