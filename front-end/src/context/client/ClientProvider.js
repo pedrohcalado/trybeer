@@ -11,8 +11,12 @@ const ClientProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [products, setProducts] = useState([]);
-  const [cartItens, setCartItens] = useState(localStorage.getItem('cart itens') || []);
   const [cart, setCart] = useState(localStorage.getItem('cart') || initialQuantity);
+  const [cartItens, setCartItens] = useState(localStorage.getItem('cart itens') || []);
+  const [redirect, setRedirect] = useState(false);
+  const [street, setStreet] = useState('');
+  const [streetNumber, setStreetNumber] = useState('');
+  const [purchaseDone, setPurchaseDone] = useState(false);
   const context = {
     email,
     setEmail,
@@ -24,6 +28,14 @@ const ClientProvider = ({ children }) => {
     setCart,
     cartItens,
     setCartItens,
+    redirect,
+    setRedirect,
+    street,
+    setStreet,
+    streetNumber,
+    setStreetNumber,
+    purchaseDone,
+    setPurchaseDone
   };
   return <ClientContext.Provider value={ context }>{children}</ClientContext.Provider>;
 };
