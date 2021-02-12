@@ -12,12 +12,10 @@ const Sale = (sequelize, DataTypes) => {
       defaultValue: 'Pendente',
     },
   },
-  {
-    timestamps: false,
-  });
-
-  sale.associate = (models) =>
+  { timestamps: false });
+  sale.associate = (models) => {
     sale.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
+  };
   return sale;
 };
 

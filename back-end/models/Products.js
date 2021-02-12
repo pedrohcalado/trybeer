@@ -8,8 +8,8 @@ const Product = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  // user.associate = (models) => {
-  //   user.hasMany(models.Post, { as: 'posts', foreignKey: 'userId' });
+  // product.associate = (models) => {
+  //   product.belongsTo(models.SaleProduct, { as: 'saleProduct', foreignKey: 'productId' });
   // };
 
   return product;

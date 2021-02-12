@@ -1,28 +1,39 @@
-const { SaleProduct, Sale, Product } = require('../models');
+const { SaleProduct, Sale, Product, User } = require('../models');
 
-const getOrderDetails = async (id) =>
-  SaleProduct.findAll({
-    // where: {
-    //   saleId: id,
-    // },
-    // attributes: {
-    //   exclude: ['']
-    // },
-    include: [{
-      model: Sale,
+const adjustResponse = (result) => ({
+  saleId: result.Product.SaleProduct.saleId,
+  sale_date: result.sale_date,
+  name: result.Product.name,
+  // quantity: ,
+  // total: ,
+  // status: ,
+});
+
+const getOrderDetails = async (id) => {
+  const result = await Sale.findAll({
+    attributes: ['sale_date', 'status'],
+    include:
+    {
+      model: Product,
+      as: 'Product',
+      attributes: ['name', 'price'],
+      required: true,
       through: {
-        id
+        model: SaleProduct,
+        as: 'SaleProduct',
+        attributes: ['quantity', 'saleId'],
+        where: { saleId: id },
+        required: true,
       }
-    }]
-      // model: Sale,
-      // as: 'Sale',
-      // attributes: ['total_price'],
-    // },
-    // include: {
-    //   model: 'Product',
-    //   attributes: [''],
-    // }
+    },
   });
+  return result;
+};
+// return result.map((data) => adjustResponse(data));
+
+
+
+// const getOrderDetails = async (id) => SaleProduct.findAll()
 
 module.exports = {
   getOrderDetails,
