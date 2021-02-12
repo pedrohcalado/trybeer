@@ -1,6 +1,6 @@
 'use strict';
 
-const saleId = {
+const saleId = (Sequelize) => ({
   type: Sequelize.INTEGER,
   allowNull: false,
   onUpdate: 'CASCADE',
@@ -9,9 +9,9 @@ const saleId = {
     model: 'Sales',
     key: 'id',
   },
-};
+});
 
-const productId = {
+const productId = (Sequelize) => ({
   type: Sequelize.INTEGER,
   allowNull: false,
   onUpdate: 'CASCADE',
@@ -20,19 +20,19 @@ const productId = {
     model: 'Products',
     key: 'id',
   },
-};
+});
 
-const quantity = {
+const quantity = (Sequelize) => ({
   type: Sequelize.INTEGER,
   allowNull: false,
-};
+});
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('SaleProducts', {
-      saleId,
-      productId,
-      quantity,
+      saleId: saleId(Sequelize),
+      productId: productId(Sequelize),
+      quantity: quantity(Sequelize),
     });
   },
 

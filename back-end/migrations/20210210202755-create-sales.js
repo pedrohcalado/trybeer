@@ -1,13 +1,13 @@
 'use strict';
 
-const id = {
+const id = (Sequelize) => ({
   type: Sequelize.INTEGER,
   primaryKey: true,
   autoIncrement: true,
   allowNull: false
-};
+});
 
-const userId = {
+const userId = (Sequelize) => ({
   type: Sequelize.INTEGER,
   allowNull: false,
   onUpdate: 'CASCADE',
@@ -16,43 +16,43 @@ const userId = {
     model: 'Users',
     key: 'id',
   },
-};
+});
 
-const total_price = {
+const total_price = (Sequelize) => ({
   type: Sequelize.FLOAT,
   allowNull: false,
-};
+});
 
-const delivery_address = {
+const delivery_address = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false,
-};
+});
 
-const delivery_number = {
+const delivery_number = (Sequelize) => ({
   type: Sequelize.INTEGER,
   allowNull: false,
-};
+});
 
-const sale_date = {
+const sale_date = (Sequelize) => ({
   type: Sequelize.DATE,
   allowNull: false,
-};
+});
 
-const status = {
+const status = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false,
-};
+});
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('Sales', {
-      id,
-      userId,
-      total_price,
-      delivery_address,
-      delivery_number,
-      sale_date,
-      status,
+      id: id(Sequelize),
+      userId: userId(Sequelize),
+      total_price: total_price(Sequelize),
+      delivery_address: delivery_address(Sequelize),
+      delivery_number: delivery_number(Sequelize),
+      sale_date: sale_date(Sequelize),
+      status: status(Sequelize),
     },
     );
   },

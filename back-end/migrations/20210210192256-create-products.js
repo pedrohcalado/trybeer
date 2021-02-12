@@ -1,34 +1,34 @@
 'use strict';
 
-const id = {
+const id = (Sequelize) => ({
   type: Sequelize.INTEGER,
   primaryKey: true,
   autoIncrement: true,
   allowNull: false
-};
+});
 
-const name = {
+const name = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false
-};
+});
 
-const price = {
+const price = (Sequelize) => ({
   type: Sequelize.FLOAT,
   allowNull: false,
-};
+});
 
-const url_image = {
+const url_image = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false
-};
+});
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('Products', {
-      id,
-      name,
-      price,
-      url_image,
+      id: id(Sequelize),
+      name: name(Sequelize),
+      price: price(Sequelize),
+      url_image: url_image(Sequelize),
     });
   },
 

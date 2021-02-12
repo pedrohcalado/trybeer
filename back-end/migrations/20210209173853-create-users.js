@@ -1,41 +1,41 @@
 'use strict';
 
-const id = {
+const id = (Sequelize) => ({
   type: Sequelize.INTEGER,
   primaryKey: true,
   autoIncrement: true,
   allowNull: false
-};
+});
 
-const name = {
+const name = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false
-};
+});
 
-const email = {
+const email = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false,
   unique: true
-};
+});
 
-const password = {
+const password = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false
-};
+});
 
-const role = {
+const role = (Sequelize) => ({
   type: Sequelize.STRING,
   allowNull: false
-};
+});
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {
-      id,
-      name,
-      email,
-      password,
-      role,
+      id: id(Sequelize),
+      name: name(Sequelize),
+      email: email(Sequelize),
+      password: password(Sequelize),
+      role: role(Sequelize),
     });
   },
 
