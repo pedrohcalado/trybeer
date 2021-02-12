@@ -12,7 +12,6 @@ const insertCheckout = async (body) => {
     delivery_number: deliveryNumber,
     status: 'Pendente',
   });
-  // console.log(result);
   cart.forEach((product) => {
     SaleProduct.create({
       saleId: result.dataValues.id,
@@ -20,13 +19,7 @@ const insertCheckout = async (body) => {
       quantity: product.quantity,
     });
   });
-  if (!result) {
-    return {
-    error: true,
-    code: 'conflict',
-    message: 'Algo deu errado',
-    };
-  }
+  if (!result) return { error: true, code: 'conflict', message: 'Algo deu errado' };
   return result;
 };
 
