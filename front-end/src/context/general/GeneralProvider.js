@@ -15,13 +15,11 @@ const GeneralProvider = ({ children }) => {
     role: '',
     name: '',
   });
-
   const context = {
     initialUser,
     userData,
     setUserData,
   };
-
   return <GeneralContext.Provider value={ context }>{children}</GeneralContext.Provider>;
 };
 

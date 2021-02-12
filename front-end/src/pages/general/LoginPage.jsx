@@ -31,6 +31,7 @@ export default function LoginPage(props) {
         name: usuario.name,
       }),
     );
+    
     if (usuario.role === 'administrator') return props.history.push('/admin/orders');
     if (usuario.role === 'client') return props.history.push('/products');
     return true;

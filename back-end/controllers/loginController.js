@@ -7,11 +7,12 @@ const login = Router();
 login.post(
   '/',
   rescue(async (req, res, next) => {
+    const duzentosUm = 201;
     const user = await loginService.validationUser(req.body);
     if (user.error) {
       return next(user);
     }
-    res.status(201).json(user);
+    res.status(duzentosUm).json(user);
   }),
 );
 

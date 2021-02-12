@@ -3,14 +3,11 @@ const checkoutService = require('../services/checkoutService');
 
 const checkout = Router();
 
+const duzentos = 200;
+const quinhentos = 500;
+
 checkout.post('/', async (req, res) => {
-  const {
-    userId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    cart,
-  } = req.body;
+  const { userId, totalPrice, deliveryAddress, deliveryNumber, cart } = req.body;
   try {
     const insertCheckout = await checkoutService.insertCheckout(
       userId,
@@ -19,10 +16,10 @@ checkout.post('/', async (req, res) => {
       deliveryNumber,
       cart,
     );
-    res.status(200).json(insertCheckout);
+    res.status(duzentos).json(insertCheckout);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Algo deu errado.' });
+    res.status(quinhentos).json({ message: 'Algo deu errado.' });
   }
 });
 

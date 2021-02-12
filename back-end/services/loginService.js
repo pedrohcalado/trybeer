@@ -1,6 +1,9 @@
 const crypto = require('crypto');
 const model = require('../models/loginModel.js');
 
+const seis = 6;
+const oito = 8;
+
 const emailValido = (email) => {
   const regexMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regexMail.test(String(email).toLowerCase());
@@ -13,7 +16,7 @@ const validationUser = async (body) => {
     return {
       error: true,
       code: 'invalid_data',
-      message: "O campo e-mail deve ter o formato 'email@email.com'",
+      message: `O campo e-mail deve ter o formato 'email@email.com'`,
     };
   }
 
@@ -25,7 +28,7 @@ const validationUser = async (body) => {
     };
   }
 
-  if (String(password).length < 6) {
+  if (String(password).length < seis) {
     return {
       error: true,
       code: 'invalid_data',
@@ -49,7 +52,7 @@ const validationUser = async (body) => {
     };
   }
 
-  const token = crypto.randomBytes(8).toString('hex');
+  const token = crypto.randomBytes(oito).toString('hex');
   return { token, id: user.id, name: user.name, email: user.email, role: user.role, message: 'Token gerado' };
 };
 
