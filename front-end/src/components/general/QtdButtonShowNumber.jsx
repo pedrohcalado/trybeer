@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ClientContext } from '../../context/client/ClientProvider';
 import PropTypes from 'prop-types';
 
 const initialQuantity = 0;
 
 export default function QtdButtonShowNumber(props) {
-  const { id, index, cartProducts } = props;
-  const cartItensLocalStorage = cartProducts.find((product) => product.id === id);
+  const { id, index } = props;
+  const { cartItens } = useContext(ClientContext);
+  const cartItensLocalStorage = cartItens.find((product) => product.id === id);
   return (
     <span
       className="cart-product-quantity"

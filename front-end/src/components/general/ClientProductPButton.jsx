@@ -6,6 +6,7 @@ const zero = 0;
 const dois = 2;
 
 export default function ClientProductPButton({ cart, cartItens }) {
+  if (!cartItens) { cartItens = zero };
   return (
     <div className="ver-carrinho">
       <Link to="/checkout" className="linkCar">
@@ -13,7 +14,7 @@ export default function ClientProductPButton({ cart, cartItens }) {
           type="button"
           data-testid="checkout-bottom-btn"
           className="buttonCart"
-          disabled={ cartItens.length === zero }
+          disabled={ cartItens.length === zero || cartItens.length === null}
         >
           Ver Carrinho
           <span data-testid="checkout-bottom-btn-value" className="somaCart">

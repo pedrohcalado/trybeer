@@ -8,8 +8,6 @@ import { ClientContext } from '../../context/client/ClientProvider';
 const zero = 0;
 
 export default function ClientCheckoutPageMaster() {
-  const getCartIten = JSON.parse(localStorage.getItem('cart itens'));
-  /* const [localCartItens, setLocalCartItens] = useState(getCartIten); */
   const { cartItens } = useContext(ClientContext);
   return (
     <div>
@@ -20,7 +18,7 @@ export default function ClientCheckoutPageMaster() {
             <ClientCPMQtdInput index={ index } product={ product } />
             <ClientCPMPrice index={ index } product={ product } />
           </div>
-          <ClientCPMButtonX index={ index } /* setLocalCartItens={ setLocalCartItens } */ />
+          <ClientCPMButtonX index={ index } />
         </div>
       )) }
       <ClientCPMContainer />

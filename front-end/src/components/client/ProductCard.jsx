@@ -4,8 +4,7 @@ import QuantityButton from './QuantityButton';
 import ProdutCardImage from '../general/ProdutCardImage';
 import ProdutCardName from '../general/ProdutCardName';
 
-const ProdCard = (props) => {
-  const { product, index } = props;
+const ProdCard = ({ product, index }) => {
   return (
     <div key={ product.id } className="card-body">
       <ProdutCardImage product={ product } index={ index } />
