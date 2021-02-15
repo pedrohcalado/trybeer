@@ -11,7 +11,6 @@ const handleClick = async (id, setSaleDetails) => {
 
 export default function AdminSaleDetailsButton(props) {
   const { id, saleDetails, setSaleDetails } = props;
-  console.log(saleDetails);
   return (
     <div>
       {saleDetails && (saleDetails[0].status === 'Pendente' ? (
