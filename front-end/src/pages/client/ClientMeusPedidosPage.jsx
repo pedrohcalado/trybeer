@@ -18,7 +18,6 @@ export default function ClientMeusPedidos() {
     }
   }, []);
   if (!token) return <Redirect to="/login" />;
-  console.log(pedidos)
   return (
     <div>
       <Menu title="Meus Pedidos" />

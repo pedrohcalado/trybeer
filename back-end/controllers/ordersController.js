@@ -13,7 +13,6 @@ orders.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const getOrderDetails = await orderDetailsService.getOrderDetails(id);
-    console.log(getOrderDetails);
     res.status(successCode).json(getOrderDetails);
   } catch (error) {
     console.log(error);

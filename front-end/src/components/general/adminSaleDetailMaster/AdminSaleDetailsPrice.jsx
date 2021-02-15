@@ -5,7 +5,8 @@ export default function AdminSaleDetailsPrice(props) {
   const { saleDetails } = props;
   return (
     <div data-testid="order-total-value" className="adminDetailsTotal">
-      {saleDetails && (`Total: R$ ${saleDetails[0].total_price.replace('.', ',')}`)}
+      {saleDetails && (`Total: R$ ${saleDetails.products.reduce((acc, elem) =>
+        elem.total + acc , 0).toFixed(2).replace('.', ',')}`)}
     </div>
   );
 }

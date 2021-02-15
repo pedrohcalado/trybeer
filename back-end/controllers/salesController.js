@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const rescue = require('express-rescue');
+const { getOrderDetails } = require('../services/orderDetailsService');
 const salesService = require('../services/salesService');
 
 const sales = Router();
@@ -18,7 +19,7 @@ sales.get('/', rescue(async (req, res, next) => {
 
 sales.get('/:id', rescue(async (req, res, next) => {
   const { id } = req.params;
-  const sale = await salesService.getSale(id);
+  const sale = await getOrderDetails(id);
   if (sale.error) {
     next(sale);
   }

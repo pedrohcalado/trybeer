@@ -13,7 +13,7 @@ export default function AdminSaleDetailsButton(props) {
   const { id, saleDetails, setSaleDetails } = props;
   return (
     <div>
-      {saleDetails && (saleDetails[0].status === 'Pendente' ? (
+      {saleDetails && (saleDetails.status === 'Pendente' ? (
         <button
           data-testid="mark-as-delivered-btn"
           className="adminDetailsButton"

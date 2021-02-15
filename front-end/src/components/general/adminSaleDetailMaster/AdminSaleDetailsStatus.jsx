@@ -6,14 +6,14 @@ export default function AdminSaleDetailsStatus(props) {
   return (
     <div className="adminDetailsTitle">
       <div data-testid="order-number">
-        {saleDetails && `Pedido ${saleDetails[0].sale_id}`}
+        {saleDetails && `Pedido ${saleDetails.saleId}`}
       </div>
       <div
         data-testid="order-status"
-        className={ saleDetails && `${saleDetails[0].status}`
+        className={ saleDetails && `${saleDetails.status}`
         === 'Entregue' ? 'adminDetailsGreen adminDetailsStatus' : 'adminDetailsStatus' }
       >
-        {saleDetails && `${saleDetails[0].status}`}
+        {saleDetails && `${saleDetails.status}`}
       </div>
     </div>
   );

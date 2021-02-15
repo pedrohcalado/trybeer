@@ -17,7 +17,6 @@ export default function ClientDetailsOrderPage(props) {
     fetchOrderDetails(id).then((data) => setOrder(data));
   }, [props]);
   if (!token) return <Redirect to="/login" />;
-  console.log(order)
   return (
     <div>
       <Menu title="Detalhes de Pedido" />

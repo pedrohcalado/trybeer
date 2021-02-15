@@ -8,13 +8,13 @@ export default function AdminSaleDetailsMap(props) {
   const { saleDetails } = props;
   return (
     <div>
-      {saleDetails && (saleDetails.map((product, index) => (
+      {saleDetails && (saleDetails.products.map((product, index) => (
         <div key="eslint" className="adminDetailsContainer">
           <AdminSDMapQtd product={ product } index={ index } />
           <AdminSDMapName product={ product } index={ index } />
           <AdminSDMapTotal product={ product } index={ index } />
           <span data-testid={ `${index}-order-unit-price` } className="adminDetailsPrice">
-            {`(R$ ${product.price.replace('.', ',')})`}
+            {`(R$ ${product.price.toString().replace('.', ',')})`}
           </span>
         </div>
       )))}
