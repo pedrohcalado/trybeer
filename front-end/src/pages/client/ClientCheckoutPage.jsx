@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Menu from '../../components/client/Menu';
 import { ClientContext } from '../../context/client/ClientProvider';
@@ -6,11 +6,9 @@ import ClientCheckoutPageMaster from '../../components/general/ClientCheckoutPag
 import '../../css/client/clientCheckoutPage.css';
 
 const token = localStorage.getItem('token') || null;
-const getCartIten = JSON.parse(localStorage.getItem('cart itens'));
 
 export default function ClientCheckoutPage() {
-  const { setCartItens, redirect } = useContext(ClientContext);
-  useEffect(() => { setCartItens(getCartIten); }, [setCartItens]);
+  const { redirect } = useContext(ClientContext);
   if (!token) return <Redirect to="/login" />;
   if (redirect) return <Redirect to="/products" />;
   return (

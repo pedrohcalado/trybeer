@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ClientContext } from '../../context/client/ClientProvider';
 
@@ -6,10 +6,9 @@ const initialQuantity = 0;
 const negativo = -1;
 
 const altQuantity = async (altQntItens, newQuantity) => {
-  const { cartProducts, id, name, price, setCartItens, cartItens } = altQntItens;
-  const prodIndex = cartProducts.findIndex((i) => i.id === id);
-  console.log(cartProducts);
-  let newCartItens = cartProducts;
+  const { id, name, price, setCartItens, cartItens } = altQntItens;
+  const prodIndex = cartItens.findIndex((i) => i.id === id);
+  let newCartItens = cartItens;
   if (prodIndex !== negativo) {
     if (newQuantity === initialQuantity) {
       newCartItens.splice(prodIndex, 1);
@@ -24,20 +23,19 @@ const altQuantity = async (altQntItens, newQuantity) => {
   localStorage.setItem('cart itens', JSON.stringify(newCartItens));
 };
 
-function decreaseItem(objQtditens, altQntItens, quantity, setQuantity) { 
-  const { cartProducts, id, price } = altQntItens;
+function decreaseItem(objQtditens, altQntItens) {
+  const { id, price, cartItens } = altQntItens;
   const { cart, setCart, updateCart } = objQtditens;
   let newQuantity;
   const newCartValue = cart - Number(price);
-  const cartItensLocalStorage = cartProducts.find((product) => product.id === id);
+  const cartItensLocalStorage = cartItens.find((product) => product.id === id);
   if (cartItensLocalStorage && cartItensLocalStorage.quantity) {
     newQuantity = cartItensLocalStorage.quantity - 1;
   } else {
-    newQuantity = quantity -1;
+    newQuantity = negativo;
   }
   if (newQuantity >= initialQuantity) {
-    setQuantity(newQuantity);
-    altQuantity(altQntItens, newQuantity, setQuantity);
+    altQuantity(altQntItens, newQuantity);
     setCart(newCartValue);
   }
   if (cart >= initialQuantity) {
@@ -46,17 +44,16 @@ function decreaseItem(objQtditens, altQntItens, quantity, setQuantity) {
 }
 
 export default function QtdButtondecreaseItem({ propsItens }) {
-  const [quantity, setQuantity] = useState(initialQuantity);
   const { cart, cartItens, setCart, setCartItens } = useContext(ClientContext);
-  const { cartProducts, id, name, price, updateCart, index } = propsItens;
-  const altQntItens = { cartProducts, id, name, price, setCartItens, cartItens };
-  const objQtditens = { cart, quantity, setQuantity, setCart, updateCart };
+  const { id, name, price, updateCart, index } = propsItens;
+  const altQntItens = { id, name, price, setCartItens, cartItens };
+  const objQtditens = { cart, setCart, updateCart };
   return (
     <button
       type="button"
       className="product-decrease-quantity"
       data-testid={ `${index}-product-minus` }
-      onClick={ () => { decreaseItem(objQtditens, altQntItens, quantity, setQuantity); } }
+      onClick={ () => { decreaseItem(objQtditens, altQntItens); } }
     >
       -
     </button>

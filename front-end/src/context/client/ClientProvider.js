@@ -12,7 +12,7 @@ const ClientProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(localStorage.getItem('cart') || initialQuantity);
-  const [cartItens, setCartItens] = useState(localStorage.getItem('cart itens') || []);
+  const [cartItens, setCartItens] = useState(JSON.parse(localStorage.getItem('cart itens')) || []);
   const [redirect, setRedirect] = useState(false);
   const [street, setStreet] = useState('');
   const [streetNumber, setStreetNumber] = useState('');

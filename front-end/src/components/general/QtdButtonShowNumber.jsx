@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ClientContext } from '../../context/client/ClientProvider';
 
 const initialQuantity = 0;
 
 export default function QtdButtonShowNumber(props) {
-  const { id, index, cartProducts } = props;
-  const cartItensLocalStorage = cartProducts.find((product) => product.id === id);
+  const { id, index } = props;
+  const { cartItens } = useContext(ClientContext);
+  const cartItensLocalStorage = cartItens.find((product) => product.id === id);
   return (
     <span
       className="cart-product-quantity"
@@ -20,5 +22,4 @@ export default function QtdButtonShowNumber(props) {
 QtdButtonShowNumber.propTypes = {
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

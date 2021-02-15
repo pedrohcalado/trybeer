@@ -20,9 +20,16 @@ const handleClick = async (BItens) => {
   setTimeout(() => setRedirect(true), twoSeconds);
 };
 
+const clearData = (setCartItens, setCart) => {
+  setCartItens([]);
+  setCart(0);
+  localStorage.removeItem('cart itens');
+  localStorage.removeItem('cart');
+};
+
 export default function ClientCPMButton() {
-  const { streetNumber, setPurchaseDone } = useContext(ClientContext);
-  const { cart, cartItens, setRedirect, street } = useContext(ClientContext);
+  const { streetNumber, setPurchaseDone, setCartItens } = useContext(ClientContext);
+  const { cart, cartItens, setRedirect, street, setCart } = useContext(ClientContext);
   const BItens = { setRedirect, cart, street, streetNumber, cartItens, setPurchaseDone };
   return (
     <div>
@@ -31,7 +38,7 @@ export default function ClientCPMButton() {
         className="chekcoutFinish"
         type="button"
         disabled={ (cart === zero) || (street === '') || (streetNumber === '') }
-        onClick={ () => handleClick(BItens) }
+        onClick={ () => { handleClick(BItens); clearData(setCartItens, setCart); } }
       >
         Finalizar Pedido
       </button>

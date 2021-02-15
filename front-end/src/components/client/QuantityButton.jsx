@@ -9,12 +9,11 @@ export default function QuantityButton(props) {
   const { id, index, price, name } = props;
   const { cart } = useContext(ClientContext);
   const updateCart = () => localStorage.setItem('cart', (cart).toString());
-  const cartProducts = JSON.parse(localStorage.getItem('cart itens'));
-  const propsItens = { cartProducts, id, name, price, index, updateCart };
+  const propsItens = { id, name, price, index, updateCart };
   return (
     <div className="quantity-container">
       <QtdButtondecreaseItem propsItens={ propsItens } />
-      <QtdButtonShowNumber id={ id } index={ index } cartProducts={ cartProducts } />
+      <QtdButtonShowNumber id={ id } index={ index } />
       <QtdButtonincreaseItem propsItens={ propsItens } />
     </div>
   );

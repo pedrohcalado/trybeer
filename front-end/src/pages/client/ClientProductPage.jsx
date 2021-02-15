@@ -8,26 +8,26 @@ import ClientProductPButton from '../../components/general/ClientProductPButton'
 import '../../css/client/clientProductPage.css';
 
 const zero = 0;
-const token = localStorage.getItem('token') || null;
-const cartValue = (parseFloat(localStorage.getItem('cart')) || zero);
-const cartIt = JSON.parse(localStorage.getItem('cart itens')) || [];
 
 const test = (cart) => {
   if (cart >= zero) localStorage.setItem('cart', (cart).toString());
 };
 
+const effectUse = (setCart, setCartItens, setProducts) => {
+  const cartValue = (parseFloat(localStorage.getItem('cart')) || zero);
+  const cartIt = JSON.parse(localStorage.getItem('cart itens')) || [];
+  productsApi().then((response) => setProducts(response));
+  setCartItens(cartIt);
+  setCart(cartValue);
+};
+
 const Products = () => {
-  const { cart, setCart, cartItens } = useContext(ClientContext);
-  const { setCartItens, products, setProducts } = useContext(ClientContext);
+  const token = localStorage.getItem('token') || null;
+  const { cart, setCart, products } = useContext(ClientContext);
+  const { setCartItens, cartItens, setProducts } = useContext(ClientContext);
   useEffect(() => { test(cart); }, [cart]);
-  useEffect(() => {
-    productsApi().then((response) => setProducts(response));
-    setCart(cartValue);
-    console.log(cartValue, 'cartValue');
-    localStorage.setItem('cart itens', JSON.stringify(cartIt));
-    console.log(cartIt, 'cartIt');
-    setCartItens(cartIt);
-  }, [setCart, setCartItens, setProducts]);
+  useEffect(() => { effectUse(setCart, setCartItens, setProducts); },
+    [setCart, setCartItens, setProducts]);
   if (!token) return <Redirect to="/login" />;
   return (
     <div>

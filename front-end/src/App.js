@@ -48,13 +48,9 @@ function App() {
 App.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.string.isRequired,
     }),
   }),
-};
-
-App.defaultProps = {
-  match: false,
 };
 
 export default App;

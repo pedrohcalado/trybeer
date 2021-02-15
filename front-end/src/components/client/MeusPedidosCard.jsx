@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import MausPCId from './MausPedidosCard/MausPCId';
-import MausPCDate from './MausPedidosCard/MausPCDate';
-import MausPCPrice from './MausPedidosCard/MausPCPrice';
+import MeusPCId from './MeusPedidosCard/MeusPCId';
+import MeusPCDate from './MeusPedidosCard/MeusPCDate';
+import MeusPCPrice from './MeusPedidosCard/MeusPCPrice';
 
-export default function MausPedidosCard(props) {
+export default function MeusPedidosCard(props) {
   const { pedidos } = props;
   return (
     <div className="bodyMeusPedidos">
       {pedidos.map((order, index) => (
         <Link to={ `/orders/${order.id}` } key={ order.id } className="linkMeusPedidos">
           <div data-testid={ `${index}-order-card-container` } className="cardConteiner">
-            <MausPCId index={ index } order={ order } />
-            <MausPCDate index={ index } order={ order } />
-            <MausPCPrice index={ index } order={ order } />
+            <MeusPCId index={ index } order={ order } />
+            <MeusPCDate index={ index } order={ order } />
+            <MeusPCPrice index={ index } order={ order } />
           </div>
         </Link>
       ))}
@@ -22,6 +22,6 @@ export default function MausPedidosCard(props) {
   );
 }
 
-MausPedidosCard.propTypes = {
+MeusPedidosCard.propTypes = {
   pedidos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
