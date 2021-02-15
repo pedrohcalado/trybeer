@@ -1,7 +1,6 @@
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 // import ClientContext from './ClientContext';
-// import productsApi from '../../services/client/api';
 
 export const ClientContext = createContext();
 
