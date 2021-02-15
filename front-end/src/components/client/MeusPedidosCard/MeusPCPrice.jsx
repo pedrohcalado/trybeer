@@ -5,7 +5,7 @@ export default function MeusPCPrice(props) {
   const { index, order } = props;
   return (
     <div data-testid={ `${index}-order-total-value` } className="valueMeuPedido">
-      { `R$ ${order.total_price.replace('.', ',')}` }
+      { `R$ ${order.total_price.toString().replace('.', ',')}` }
     </div>
   );
 }

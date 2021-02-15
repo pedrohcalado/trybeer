@@ -6,10 +6,10 @@ export default function ClientDetailsOrderDetail(props) {
   return (
     <div className="datailPedido">
       <span data-testid="order-number">
-        {order && `Pedido ${order.orderDetail[0].sale_id}`}
+        {order && `Pedido ${order.saleId}`}
       </span>
       <span data-testid="order-date">
-        {order && order.orderDetail[0].sale_date}
+        {order && order.sale_date}
       </span>
     </div>
   );

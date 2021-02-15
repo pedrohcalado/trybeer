@@ -10,7 +10,7 @@ export default function ClientDetailsOrderPrice(props) {
     <div>
       {order && (
         <div data-testid="order-total-value" className="detailsTotal">
-          {`Total R$ ${order.orderDetail
+          {`Total R$ ${order.products
             .reduce((total, product) => total + product.total, zero)
             .toFixed(dois)
             .replace('.', ',')}

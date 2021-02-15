@@ -9,7 +9,7 @@ export default function ClientDetailsOrderMap(props) {
   return (
     <div>
       {order && (
-        order.orderDetail.map((product, index) => (
+        order.products.map((product, index) => (
           <div key="fechalint" className="datailCard">
             <ClientDOMapName index={ index } product={ product } />
             <ClientDOMapProduct index={ index } product={ product } />

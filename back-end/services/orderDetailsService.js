@@ -1,12 +1,16 @@
-const { SaleProduct, Sale, Product, User } = require('../models');
+const { SaleProduct, Sale, Product } = require('../models');
+const dateFormat = require('dateformat');
 
-const adjustResponse = (result) => ({
-  saleId: result.Product.SaleProduct.saleId,
-  sale_date: result.sale_date,
-  name: result.Product.name,
-  // quantity: ,
-  // total: ,
-  // status: ,
+const adjustResponse = (result, id) => ({
+  saleId: id,
+  sale_date: dateFormat(result.sale_date, 'dd/mm'),
+  status: result.status,
+  products: result.Product.map((prod) => ({
+    name: prod.name,
+    price: prod.price,
+    quantity: prod.SaleProduct.quantity,
+    total: prod.price * prod.SaleProduct.quantity,
+  })),
 });
 
 const getOrderDetails = async (id) => {
@@ -27,7 +31,7 @@ const getOrderDetails = async (id) => {
       }
     },
   });
-  return result;
+  return adjustResponse(result[0], id);
 };
 // return result.map((data) => adjustResponse(data));
 
