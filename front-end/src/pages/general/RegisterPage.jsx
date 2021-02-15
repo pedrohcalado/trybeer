@@ -45,7 +45,6 @@ export default function RegisterPage() {
       }),
     );
     setLoggedIn(true);
-    // return <Redirect to="/products" />;
   };
 
   const isUserRegistered = async (user) => {
@@ -72,12 +71,12 @@ export default function RegisterPage() {
     }
   };
 
-  if (isFetched && !isEmailRegistered && userData.role === 'client' && isEmailVerified) {
+  if (isFetched && !isEmailRegistered && userData.role === 'client') {
     setLocalStorage(userData);
     return loggedIn && <Redirect to="/products" />;
   }
 
-  if (isFetched && !isEmailRegistered && userData.role === 'administrator' && isEmailVerified) {
+  if (isFetched && !isEmailRegistered && userData.role === 'administrator') {
     setLocalStorage(userData);
     return <Redirect to="/admin/orders" />;
   }

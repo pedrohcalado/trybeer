@@ -1,26 +1,16 @@
 const { Router } = require('express');
+const rescue = require('express-rescue');
 const checkoutService = require('../services/checkoutService');
 
 const checkout = Router();
+const createdCode = 201;
 
-const duzentos = 200;
-const quinhentos = 500;
-
-checkout.post('/', async (req, res) => {
-  const { userId, totalPrice, deliveryAddress, deliveryNumber, cart } = req.body;
-  try {
-    const insertCheckout = await checkoutService.insertCheckout(
-      userId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      cart,
-    );
-    res.status(duzentos).json(insertCheckout);
-  } catch (error) {
-    console.error(error);
-    res.status(quinhentos).json({ message: 'Algo deu errado.' });
+checkout.post('/', rescue (async (req, res, next) => {
+  const insertCheckout = await checkoutService.insertCheckout(req.body);
+  if (insertCheckout.error) {
+    next(insertCheckout);
   }
-});
+  res.status(createdCode).json({ message: 'ok' });
+}));
 
 module.exports = checkout;
