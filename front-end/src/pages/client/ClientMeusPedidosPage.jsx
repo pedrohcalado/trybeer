@@ -5,7 +5,6 @@ import MeusPedidosCard from '../../components/client/MeusPedidosCard';
 import MeusPedidosData from '../../services/client/fetchMeusPedidosData';
 import '../../css/client/clientMeusPedidosPage.css';
 
-
 export default function ClientMeusPedidos() {
   const token = localStorage.getItem('token') || null;
   const [pedidos, setPedidos] = useState([]);

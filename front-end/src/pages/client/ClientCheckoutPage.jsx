@@ -5,7 +5,6 @@ import { ClientContext } from '../../context/client/ClientProvider';
 import ClientCheckoutPageMaster from '../../components/general/ClientCheckoutPageMaster';
 import '../../css/client/clientCheckoutPage.css';
 
-
 export default function ClientCheckoutPage() {
   const token = localStorage.getItem('token') || null;
   const { redirect } = useContext(ClientContext);

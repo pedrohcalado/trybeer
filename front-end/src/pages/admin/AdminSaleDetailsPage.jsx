@@ -6,7 +6,6 @@ import getSaleById from '../../services/admin/getSaleById';
 import AdminSaleDetailMaster from '../../components/general/AdminSaleDetailMaster';
 import '../../css/admin/adminSaleDetailsPage.css';
 
-
 export default function AdminSaleDetailsPage(props) {
   const token = localStorage.getItem('token') || null;
   const [saleDetails, setSaleDetails] = useState('');

@@ -31,11 +31,7 @@ export default function ClientProfilePage() {
     });
     localStorage.setItem(
       'user',
-      JSON.stringify({
-        email: user.email,
-        name: localName,
-        role: user.role,
-      }),
+      JSON.stringify({ email: user.email, name: localName, role: user.role }),
     );
     const api = await updateUserNameAPI(user.id, {
       ...user,
