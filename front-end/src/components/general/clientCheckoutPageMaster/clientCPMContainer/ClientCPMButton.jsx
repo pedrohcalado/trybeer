@@ -4,9 +4,9 @@ import { ClientContext } from '../../../../context/client/ClientProvider';
 
 const zero = 0;
 const twoSeconds = 2000;
-const userData = JSON.parse(localStorage.getItem('user'));
 
 const handleClick = async (BItens) => {
+  const userData = JSON.parse(localStorage.getItem('user'));
   const { setRedirect, cart, street, streetNumber, cartItens, setPurchaseDone } = BItens;
   const salesData = {
     userId: userData.id,

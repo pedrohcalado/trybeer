@@ -5,9 +5,9 @@ import MeusPedidosCard from '../../components/client/MeusPedidosCard';
 import MeusPedidosData from '../../services/client/fetchMeusPedidosData';
 import '../../css/client/clientMeusPedidosPage.css';
 
-const token = localStorage.getItem('token') || null;
 
 export default function ClientMeusPedidos() {
+  const token = localStorage.getItem('token') || null;
   const [pedidos, setPedidos] = useState([]);
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem('user'))) {
@@ -18,6 +18,7 @@ export default function ClientMeusPedidos() {
     }
   }, []);
   if (!token) return <Redirect to="/login" />;
+  console.log(pedidos)
   return (
     <div>
       <Menu title="Meus Pedidos" />
