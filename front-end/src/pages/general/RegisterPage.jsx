@@ -12,7 +12,6 @@ export default function RegisterPage() {
   const [isEmailValid, setEmailValid] = useState(false);
   const [isPasswordValid, setPasswordValid] = useState(false);
   const [isEmailRegistered, setEmailRegistered] = useState(false);
-  const [isEmailVerified, setEmailVerified] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({
@@ -54,20 +53,14 @@ export default function RegisterPage() {
     if (isEmailRegistered) {
       setEmailRegistered(false);
     }
-    if (isEmailVerified) {
-      setEmailVerified(false);
-    }
     if (message === 'E-mail already in database.') {
       setEmailRegistered(true);
-      setEmailVerified(true);
     }
     if (message === 'ok' && role === 'client') {
       setEmailRegistered(false);
-      setEmailVerified(true);
     }
     if (message === 'ok' && role === 'administrator') {
       setEmailRegistered(false);
-      setEmailVerified(true);
     }
   };
 
