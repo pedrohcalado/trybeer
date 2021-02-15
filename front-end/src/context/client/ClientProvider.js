@@ -17,7 +17,6 @@ const ClientProvider = ({ children }) => {
   const [street, setStreet] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
   const [purchaseDone, setPurchaseDone] = useState(false);
-  console.log(cartItens);
   const context = {
     email,
     setEmail,

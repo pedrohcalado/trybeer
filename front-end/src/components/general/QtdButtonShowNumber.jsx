@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ClientContext } from '../../context/client/ClientProvider';
 import PropTypes from 'prop-types';
+import { ClientContext } from '../../context/client/ClientProvider';
 
 const initialQuantity = 0;
 
@@ -22,5 +22,4 @@ export default function QtdButtonShowNumber(props) {
 QtdButtonShowNumber.propTypes = {
   id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  cartProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

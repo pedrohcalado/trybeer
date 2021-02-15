@@ -34,6 +34,5 @@ export default function ClientCPMButtonX(props) {
 }
 
 ClientCPMButtonX.propTypes = {
-  setLocalCartItens: PropTypes.arrayOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
 };

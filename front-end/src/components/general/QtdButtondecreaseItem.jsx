@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ClientContext } from '../../context/client/ClientProvider';
 
@@ -23,7 +23,7 @@ const altQuantity = async (altQntItens, newQuantity) => {
   localStorage.setItem('cart itens', JSON.stringify(newCartItens));
 };
 
-function decreaseItem(objQtditens, altQntItens) { 
+function decreaseItem(objQtditens, altQntItens) {
   const { id, price, cartItens } = altQntItens;
   const { cart, setCart, updateCart } = objQtditens;
   let newQuantity;
@@ -32,7 +32,7 @@ function decreaseItem(objQtditens, altQntItens) {
   if (cartItensLocalStorage && cartItensLocalStorage.quantity) {
     newQuantity = cartItensLocalStorage.quantity - 1;
   } else {
-    newQuantity = -1;
+    newQuantity = negativo;
   }
   if (newQuantity >= initialQuantity) {
     altQuantity(altQntItens, newQuantity);
