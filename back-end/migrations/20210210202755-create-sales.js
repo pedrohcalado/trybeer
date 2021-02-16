@@ -13,7 +13,7 @@ const userId = (Sequelize) => ({
   onUpdate: 'CASCADE',
   onDelete: 'CASCADE',
   references: {
-    model: 'Users',
+    model: 'users',
     key: 'id',
   },
 });
@@ -45,7 +45,7 @@ const status = (Sequelize) => ({
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Sales', {
+    return queryInterface.createTable('sales', {
       id: id(Sequelize),
       userId: userId(Sequelize),
       total_price: total_price(Sequelize),
@@ -58,6 +58,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Sales');
+    return queryInterface.dropTable('sales');
   }
 };
