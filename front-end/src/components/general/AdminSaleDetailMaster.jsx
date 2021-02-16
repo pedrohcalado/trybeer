@@ -4,6 +4,7 @@ import AdminSaleDetailsStatus from './adminSaleDetailMaster/AdminSaleDetailsStat
 import AdminSaleDetailsMap from './adminSaleDetailMaster/AdminSaleDetailsMap';
 import AdminSaleDetailsPrice from './adminSaleDetailMaster/AdminSaleDetailsPrice';
 import AdminSaleDetailsButton from './adminSaleDetailMaster/AdminSaleDetailsButton';
+import PrepareButton from './adminSaleDetailMaster/AdminSaleDetailsPrepareButton';
 
 export default function AdminSaleDetailMaster(props) {
   const { id, saleDetails, setSaleDetails } = props;
@@ -13,6 +14,11 @@ export default function AdminSaleDetailMaster(props) {
       <AdminSaleDetailsMap saleDetails={ saleDetails } />
       <AdminSaleDetailsPrice saleDetails={ saleDetails } />
       <AdminSaleDetailsButton
+        id={ id }
+        saleDetails={ saleDetails }
+        setSaleDetails={ setSaleDetails }
+      />
+      <PrepareButton
         id={ id }
         saleDetails={ saleDetails }
         setSaleDetails={ setSaleDetails }

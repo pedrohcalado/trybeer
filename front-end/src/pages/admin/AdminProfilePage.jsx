@@ -5,7 +5,6 @@ import '../../css/admin/adminProfilePage.css';
 import AdminProfileEmail from '../../components/general/AdminProfileEmail';
 import AdminProfileName from '../../components/general/AdminProfileName';
 
-
 export default function ClientProfilePage() {
   const token = localStorage.getItem('token') || null;
   if (!token) return <Redirect to="/login" />;

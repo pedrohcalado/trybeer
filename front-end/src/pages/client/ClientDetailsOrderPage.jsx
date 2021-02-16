@@ -8,9 +8,9 @@ import ClientDOMap from '../../components/general/ClientDetailsOrderMap';
 import ClientDOPrice from '../../components/general/ClientDetailsOrderPrice';
 import '../../css/client/clientDetailsOrderPage.css';
 
-const token = localStorage.getItem('token') || null;
 
 export default function ClientDetailsOrderPage(props) {
+  const token = localStorage.getItem('token') || null;
   const [order, setOrder] = useState('');
   useEffect(() => {
     const { id } = props;

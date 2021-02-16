@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 export default function ButtonPedidos() {
   return (
-    <div>
+    <div className="buttonLateralAdm">
       <Link
         to="/admin/orders"
         data-testid="side-menu-item-orders"
-        className="buttonLateralAdm"
+        // className="buttonLateralAdm"
       >
         Pedidos
       </Link>

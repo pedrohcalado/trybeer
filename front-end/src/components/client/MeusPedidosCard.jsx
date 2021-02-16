@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MeusPCId from './MeusPedidosCard/MeusPCId';
 import MeusPCDate from './MeusPedidosCard/MeusPCDate';
 import MeusPCPrice from './MeusPedidosCard/MeusPCPrice';
+import MeusPCStatus from './MeusPedidosCard/MeusPCStatus';
 
 export default function MeusPedidosCard(props) {
   const { pedidos } = props;
@@ -15,6 +16,7 @@ export default function MeusPedidosCard(props) {
             <MeusPCId index={ index } order={ order } />
             <MeusPCDate index={ index } order={ order } />
             <MeusPCPrice index={ index } order={ order } />
+            <MeusPCStatus index={ index } order={ order } />
           </div>
         </Link>
       ))}

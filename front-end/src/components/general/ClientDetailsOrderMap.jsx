@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ClientDOMapName from './ClientDetailsOrderMap/ClientDOMName';
 import ClientDOMapProduct from './ClientDetailsOrderMap/ClientDOMProduct';
 import ClientDOMapPrice from './ClientDetailsOrderMap/ClientDOMPrice';
+import ClientDOMapStatus from './ClientDetailsOrderMap/ClientDOMStatus';
 
 export default function ClientDetailsOrderMap(props) {
   const { order } = props;
@@ -14,6 +15,7 @@ export default function ClientDetailsOrderMap(props) {
             <ClientDOMapName index={ index } product={ product } />
             <ClientDOMapProduct index={ index } product={ product } />
             <ClientDOMapPrice index={ index } product={ product } />
+            <ClientDOMapStatus index={ index } status={ order.status } />
           </div>
         ))
       ) }
