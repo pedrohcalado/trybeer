@@ -1,7 +1,7 @@
 const { Product } = require('../models');
 
 const getAllProducts = async () => {
-  const products = Product.findAll();
+  const products = await Product.findAll();
   if (!products) {
     return {
       error: true,

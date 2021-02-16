@@ -6,7 +6,7 @@ const saleId = (Sequelize) => ({
   onUpdate: 'CASCADE',
   onDelete: 'CASCADE',
   references: {
-    model: 'sales',
+    model: 'Sales',
     key: 'id',
   },
 });
@@ -17,7 +17,7 @@ const productId = (Sequelize) => ({
   onUpdate: 'CASCADE',
   onDelete: 'CASCADE',
   references: {
-    model: 'products',
+    model: 'Products',
     key: 'id',
   },
 });
@@ -29,7 +29,7 @@ const quantity = (Sequelize) => ({
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('saleProducts', {
+    return queryInterface.createTable('SaleProducts', {
       saleId: saleId(Sequelize),
       productId: productId(Sequelize),
       quantity: quantity(Sequelize),
@@ -37,6 +37,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('saleProducts');
+    return queryInterface.dropTable('SaleProducts');
   }
 };
