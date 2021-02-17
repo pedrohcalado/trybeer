@@ -7,7 +7,7 @@ const createMessage = async ({ nickname, message, timestamp }) => {
       .then((db) => db.collection('messages')
         .insertOne({ nickname, message, timestamp }));
 
-    return dbMessage.ops[0];
+    return dbMessage;
   } catch (error) {
     console.error(error.message);
 
@@ -15,10 +15,23 @@ const createMessage = async ({ nickname, message, timestamp }) => {
   }
 };
 
-async function getAllMessages() {
+/* async function getAllMessages() {
   try {
     const messages = await connection().then((db) => db.collection('messages')
       .find().toArray());
+
+    return messages;
+  } catch (error) {
+    console.error(error.message);
+
+    return error.message;
+  }
+} */
+
+async function getMessagesByNickname(nickname) {
+  try {
+    const messages = await connection().then((db) => db.collection('messages')
+      .find({ nickname }).toArray());
 
     return messages;
   } catch (error) {
@@ -30,5 +43,5 @@ async function getAllMessages() {
 
 module.exports = {
   createMessage,
-  getAllMessages,
+  getMessagesByNickname,
 };
