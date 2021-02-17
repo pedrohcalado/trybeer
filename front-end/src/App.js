@@ -29,6 +29,7 @@ function App() {
         <Route path="/admin/orders" component={ AdminOrderPage } />
         <Route path="/admin/profile" component={ AdminProfilePage } />
         <Route path="/admin/chats" component={ AdminChatPage } />
+        <Route path="/admin/chat" component={ AdminChatPage } />
         <Route path="/login" component={ LoginPage } />
         <Route path="/register" component={ RegisterPage } />
         <Route path="/products" component={ ClientProductPage } />

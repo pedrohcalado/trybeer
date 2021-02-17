@@ -15,10 +15,17 @@ const createMessage = async ({ nickname, message, timestamp }) => {
   }
 };
 
-/* async function getAllMessages() {
+async function getLastClientMessages() {
   try {
     const messages = await connection().then((db) => db.collection('messages')
-      .find().toArray());
+      .aggregate([
+        {
+          $sort: { timestamp: -1 }
+        },
+        {
+          $group: { _id: '$nickname', lastMessage: { $first: '$timestamp' } }
+        }])
+      .toArray());
 
     return messages;
   } catch (error) {
@@ -26,7 +33,7 @@ const createMessage = async ({ nickname, message, timestamp }) => {
 
     return error.message;
   }
-} */
+}
 
 async function getMessagesByNickname(nickname) {
   try {
@@ -44,4 +51,5 @@ async function getMessagesByNickname(nickname) {
 module.exports = {
   createMessage,
   getMessagesByNickname,
+  getLastClientMessages,
 };
