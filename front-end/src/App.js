@@ -13,6 +13,7 @@ import './css/client/app.css';
 import ClientDetailsOrderPage from './pages/client/ClientDetailsOrderPage';
 import AdminSaleDetailsPage from './pages/admin/AdminSaleDetailsPage';
 import ClientChatPage from './pages/client/ClientChatPage';
+import AdminChatCardsPage from './pages/admin/AdminChatCardsPage';
 import AdminChatPage from './pages/admin/AdminChatPage';
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
         />
         <Route path="/admin/orders" component={ AdminOrderPage } />
         <Route path="/admin/profile" component={ AdminProfilePage } />
-        <Route path="/admin/chats" component={ AdminChatPage } />
+        <Route path="/admin/chats" component={ AdminChatCardsPage } />
         <Route path="/admin/chat" component={ AdminChatPage } />
         <Route path="/login" component={ LoginPage } />
         <Route path="/register" component={ RegisterPage } />
